@@ -24,17 +24,21 @@ namespace InsuranceQuoteRating.Controllers
 
         [Route("premium")]
         [HttpPost]
-        public PremiumResponse Premium([FromBody] PremiumRequest request)
+        public IActionResult Premium([FromBody] PremiumRequest request)
         {
-            //TODO: Validated payload data (return bad request in case invalid??) - also revenue should be long - return 400 bad request
+            if (request == null) return BadRequest("Payload has a wrong format or it is empty");
+            if (string.IsNullOrEmpty(request.state)) return BadRequest("State is required to calculate premium rating");
+            if (string.IsNullOrEmpty(request.business)) return BadRequest("Business type is required to calculate premium rating");
+            if (request.revenue < 0) return BadRequest("Revenue can not be a negative number");
+
             //TODO: Validated if we got a valid result from service?
             //TODO: Add more log everywhere
             //TODO: Use more general/generic name for the solution
 
-            var premiumRate = _ratingService.CalculatePremiumRating((long)request.revenue, request.state, request.business);
+            var premiumRate = _ratingService.CalculatePremiumRating((ulong)request.revenue, request.state, request.business);
             _logger.LogInformation("Is the log working correctly?");
 
-            return new PremiumResponse() { premium = premiumRate }; //TODO: response with an IAction or similar instead? What good practices indicates???
+            return Ok(new PremiumResponse() { premium = premiumRate }); //TODO: response with an IAction or similar instead? What good practices indicates???
         }
 
     }

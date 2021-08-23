@@ -7,6 +7,6 @@ namespace InsuranceQuoteRating.Services
 {
     public interface IRatingService
     {
-        double CalculatePremiumRating(long revenue, string state, string business);
+        double CalculatePremiumRating(ulong revenue, string state, string business);
     }
 }

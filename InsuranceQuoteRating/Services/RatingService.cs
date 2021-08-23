@@ -19,7 +19,7 @@ namespace InsuranceQuoteRating.Services
             _businessFactorRepo = businessFactorRepo;
         }
 
-        public double CalculatePremiumRating(long revenue, string state, string business) {
+        public double CalculatePremiumRating(ulong revenue, string state, string business) {
 
             //TODO: Throw exception when it was no able to get state or business factors?  404 not found???
             var stateFactor = _stateFactorRepo.GetFactor(state);
