@@ -1,0 +1,14 @@
+[
+  {
+    "Business": "Architect",
+    "Factor": 1
+  },
+  {
+    "Business": "Plumber",
+    "Factor": 0.5
+  },
+  {
+    "Business": "Programmer",
+    "Factor": 1.25
+  }
+]

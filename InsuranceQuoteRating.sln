@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsuranceQuoteRating", "InsuranceQuoteRating\InsuranceQuoteRating.csproj", "{13A439C3-1683-44C3-A1C5-ADCA60B6829D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsuranceQuoteRating.Spec", "InsuranceQuoteRating.Spec\InsuranceQuoteRating.Spec.csproj", "{31D61C4E-7A1A-471D-A846-5013CF30FD0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{13A439C3-1683-44C3-A1C5-ADCA60B6829D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13A439C3-1683-44C3-A1C5-ADCA60B6829D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13A439C3-1683-44C3-A1C5-ADCA60B6829D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13A439C3-1683-44C3-A1C5-ADCA60B6829D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31D61C4E-7A1A-471D-A846-5013CF30FD0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31D61C4E-7A1A-471D-A846-5013CF30FD0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31D61C4E-7A1A-471D-A846-5013CF30FD0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31D61C4E-7A1A-471D-A846-5013CF30FD0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B9B6536C-659A-4657-9944-B9F16BE7A966}
+	EndGlobalSection
+EndGlobal

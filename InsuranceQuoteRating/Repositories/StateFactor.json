@@ -1,0 +1,14 @@
+[
+  {
+    "State": "OH",
+    "Factor": 1
+  },
+  {
+    "State": "FL",
+    "Factor": 1.2
+  },
+  {
+    "State": "TX",
+    "Factor": 0.943
+  }
+]
