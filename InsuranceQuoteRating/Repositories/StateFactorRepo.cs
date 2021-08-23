@@ -28,7 +28,7 @@ namespace InsuranceQuoteRating.Repositories
             }
             catch (Exception exception)
             {
-                throw exception; //TODO: what is a good way to log this exception? Application Insights -> future
+                throw exception;
             };
         }
 
@@ -40,7 +40,7 @@ namespace InsuranceQuoteRating.Repositories
             }
             catch (Exception exception)
             {
-                throw exception; //TODO: what is a good way to log this exception? Application Insights -> future
+                throw exception;
             }
         }
 

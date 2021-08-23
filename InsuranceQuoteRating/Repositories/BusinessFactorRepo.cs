@@ -24,7 +24,7 @@ namespace InsuranceQuoteRating.Repositories
                 return _businessFactors.FirstOrDefault(bf => bf.Business == factorScale);
             }
             catch (Exception exception) {
-                throw exception; //TODO: what is a good way to log this exception? Application Insights -> future
+                throw exception;
             };
         }
 
@@ -35,7 +35,7 @@ namespace InsuranceQuoteRating.Repositories
                 _businessFactors = JsonConvert.DeserializeObject<List<BusinessFactor>>(File.ReadAllText(_dataSource));
             }
             catch(Exception exception) {
-                throw exception; //TODO: what is a good way to log this exception? Application Insights -> future
+                throw exception;
             }
         }
     }

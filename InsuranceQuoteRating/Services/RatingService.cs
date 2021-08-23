@@ -1,4 +1,5 @@
-﻿using InsuranceQuoteRating.Models;
+﻿using InsuranceQuoteRating.Exceptions;
+using InsuranceQuoteRating.Models;
 using InsuranceQuoteRating.Repositories;
 using System;
 using System.Collections.Generic;
@@ -21,9 +22,11 @@ namespace InsuranceQuoteRating.Services
 
         public double CalculatePremiumRating(ulong revenue, string state, string business) {
 
-            //TODO: Throw exception when it was no able to get state or business factors?  404 not found???
             var stateFactor = _stateFactorRepo.GetFactor(state);
+            if (stateFactor == null) throw new FactorNotLocatedException($"Could not locate a valid factor for state: {state}");
+
             var businessFactor = _businessFactorRepo.GetFactor(business);
+            if (businessFactor == null) throw new FactorNotLocatedException($"Could not locate a valid factor for business: {business}");
 
             double basePremiumReal = revenue / _basePremiumDivider;
             var basePremium = Math.Ceiling(basePremiumReal);

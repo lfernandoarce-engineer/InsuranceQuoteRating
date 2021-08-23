@@ -29,7 +29,7 @@ namespace InsuranceQuoteRating
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddScoped(typeof(IRepository<StateFactor>), typeof(StateFactorRepo)); //TODO: Use Singleton instead?
+            services.AddScoped(typeof(IRepository<StateFactor>), typeof(StateFactorRepo));
             services.AddScoped(typeof(IRepository<BusinessFactor>), typeof(BusinessFactorRepo));
             services.AddScoped<IRatingService, RatingService>();
         }

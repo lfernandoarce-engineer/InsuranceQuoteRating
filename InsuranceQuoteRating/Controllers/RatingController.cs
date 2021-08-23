@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InsuranceQuoteRating.Exceptions;
 using InsuranceQuoteRating.Models.DTOs;
 using InsuranceQuoteRating.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -24,21 +25,44 @@ namespace InsuranceQuoteRating.Controllers
 
         [Route("premium")]
         [HttpPost]
-        public IActionResult Premium([FromBody] PremiumRequest request)
+        public ActionResult<PremiumResponse> Premium([FromBody] PremiumRequest request)
         {
-            if (request == null) return BadRequest("Payload has a wrong format or it is empty");
-            if (string.IsNullOrEmpty(request.state)) return BadRequest("State is required to calculate premium rating");
-            if (string.IsNullOrEmpty(request.business)) return BadRequest("Business type is required to calculate premium rating");
-            if (request.revenue < 0) return BadRequest("Revenue can not be a negative number");
+            _logger.LogInformation("Validating premium request");
 
-            //TODO: Validated if we got a valid result from service?
-            //TODO: Add more log everywhere
-            //TODO: Use more general/generic name for the solution
+            var errorMessage = ValidatePremiumRequest(request);
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                _logger.LogError(errorMessage);
+                return BadRequest(errorMessage);
+            }
 
-            var premiumRate = _ratingService.CalculatePremiumRating((ulong)request.revenue, request.state, request.business);
-            _logger.LogInformation("Is the log working correctly?");
+            try {
+                _logger.LogInformation("Calculating Premium Rating");
 
-            return Ok(new PremiumResponse() { premium = premiumRate }); //TODO: response with an IAction or similar instead? What good practices indicates???
+                var premiumRate = _ratingService.CalculatePremiumRating((ulong)request.revenue, request.state, request.business);
+
+                _logger.LogInformation($"Premium rating calculated: {premiumRate}");
+
+                return Ok(new PremiumResponse() { premium = premiumRate });
+            }
+            catch (FactorNotLocatedException exception) {
+                _logger.LogError(exception.Message);
+                return NotFound(exception.Message);
+            }
+            catch (Exception exception) {
+                _logger.LogError(exception.Message);
+                return StatusCode(500);
+            }         
+        }
+
+        private string ValidatePremiumRequest(PremiumRequest request) {
+
+            if (request == null) return "Payload has a wrong format or it is empty";
+            if (string.IsNullOrEmpty(request.state)) return "State is required to calculate premium rating";
+            if (string.IsNullOrEmpty(request.business)) return "Business type is required to calculate premium rating";
+            if (request.revenue < 0) return "Revenue can not be a negative number";
+
+            return string.Empty;
         }
 
     }
